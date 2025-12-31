@@ -106,6 +106,25 @@
             padding: 0 40px;
             line-height: 1.8;
         }
+        /* Hide the GIF by default (Mobile and Tablets) */
+.about-gif {
+    display: none;
+}
+
+/* Show the GIF only on Desktop (Screens wider than 1024px) */
+@media (min-width: 1025px) {
+    .about-gif {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 360px;
+        height: 360px;
+        border-radius: 50%;
+        overflow: hidden;
+        z-index: 999;
+    }
+}
 
         .content-box p {
             font-weight: 300;
