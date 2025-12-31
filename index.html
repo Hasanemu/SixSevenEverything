@@ -24,7 +24,6 @@
             min-height: 100vh;
         }
 
-        /* Navbar */
         nav {
             display: flex;
             justify-content: space-between;
@@ -49,7 +48,6 @@
 
         .nav-links a:hover { opacity: 0.5; }
 
-        /* Main Content */
         main {
             display: flex;
             flex-direction: column;
@@ -60,11 +58,7 @@
             position: relative;
             z-index: 2;
         }
-@media (max-width: 768px) {
-    .bottom-img {
-        display: none;
-    }
-}
+
         .container {
             max-width: 600px;
             width: 100%;
@@ -78,7 +72,6 @@
         h1 { font-weight: 600; font-size: 2rem; margin-bottom: 1rem; letter-spacing: -1px; }
         p { font-weight: 300; color: #666; margin-bottom: 2rem; }
 
-        /* Input Area */
         .upload-area { margin-bottom: 20px; }
         input[type="file"] { display: none; }
 
@@ -119,7 +112,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        /* Large Green Interactive Download Button */
         #downloadLink {
             display: none;
             margin-top: 30px;
@@ -139,19 +131,22 @@
             box-shadow: 0 15px 30px rgba(0,210,106,0.4);
         }
 
-        /* Bottom Decoration Images */
+        /* Fixed the 'Boxy Question Mark' by removing broken external links 
+           and adding a media query to hide icons on mobile */
+        @media (max-width: 768px) {
+            .bottom-img { display: none; }
+        }
+
         .bottom-img {
             position: fixed;
             bottom: -20px;
             width: 280px;
             z-index: 1;
             pointer-events: none;
-            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.05));
+            opacity: 0.6;
         }
-        
         .cat-right { right: 20px; }
         .cat-left { left: 20px; }
-
     </style>
 </head>
 <body>
@@ -177,9 +172,12 @@
 
             <canvas id="canvas"></canvas>
             
-            <a id="downloadLink" download="6-7-minimal.png">Download</a>
+            <a id="downloadLink">Download</a>
         </div>
     </main>
+
+    <img src="cat-left.png" alt="" class="bottom-img cat-left">
+    <img src="cat-right.png" alt="" class="bottom-img cat-right">
 
     <script>
         function processImage() {
@@ -193,6 +191,9 @@
                 return;
             }
 
+            const originalFile = fileInput.files[0];
+            const originalName = originalFile.name.split('.').slice(0, -1).join('.'); // Get name without extension
+            
             const img = new Image();
             img.onload = function() {
                 canvas.width = img.width;
@@ -214,12 +215,15 @@
                 ctx.restore();
 
                 canvas.style.display = 'block';
+                
+                // Set the download attributes
                 downloadLink.href = canvas.toDataURL('image/png');
+                downloadLink.download = `${originalName} - SixSevenEverything.png`;
                 downloadLink.style.display = 'inline-block';
                 
                 canvas.scrollIntoView({ behavior: 'smooth' });
             };
-            img.src = URL.createObjectURL(fileInput.files[0]);
+            img.src = URL.createObjectURL(originalFile);
         }
     </script>
 </body>
