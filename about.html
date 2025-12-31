@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Six Seven Everything</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-black: #1a1a1a;
+            --accent-gray: #f4f4f9;
+            --border-color: #e0e0e0;
+        }
+
+        /* 1. Set html and body to 100% height to allow vertical centering */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: var(--primary-black);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Identical Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 10%;
+            background: #fff;
+            position: absolute; /* Keep nav at top without affecting center logic */
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-black);
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
+        }
+        .about-gif {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.about-gif img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+        .nav-links a:hover { opacity: 0.5; }
+
+        /* 2. Absolute Centering Logic */
+        main {
+            flex: 1; /* Takes up all available space between nav and bottom */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* This centers it vertically */
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-container {
+            max-width: 700px;
+            width: 100%;
+            /* Minor negative margin to visually balance the navbar height */
+            margin-top: -20px; 
+        }
+
+        h1 {
+            font-weight: 600;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1.5px;
+        }
+
+        .content-box {
+            padding: 0 40px;
+            line-height: 1.8;
+        }
+
+        .content-box p {
+            font-weight: 300;
+            color: #444;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Bottom Decoration Images */
+        .bottom-img {
+            position: fixed;
+            bottom: -20px;
+            width: 280px;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        
+        .cat-right { right: 20px; }
+        .cat-left { left: 20px; }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            text-decoration: none;
+            color: var(--primary-black);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--primary-black);
+            padding-bottom: 5px;
+            transition: opacity 0.3s;
+        }
+
+        .back-btn:hover { opacity: 0.5; }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div style="font-weight: 600; font-size: 1.2rem;">SSE</div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="about-container">
+            <h1></h1>
+            <div class="content-box">
+                <p>
+                    The 6-7 meme initiated from a song by Skrilla titled 'Doot Doot' where he says 6-7. NBA Player LaMelo Ball is often referred to when talking about the 6-7 meme because he's actually 6 feet and 7 inches tall. Anyway, it's a pretty useless meme but we shall honour and embrace it. 
+                </p>
+                <p>
+                    This site was made out of boredom. Enjoy.
+                </p>
+                <a href="index.html" class="back-btn">Return Home</a>
+            </div>
+        </div>
+    </main>
+
+    <img src="https://cdni.iconscout.com/illustration/premium/thumb/cat-illustration-download-in-svg-png-gif-file-formats--pet-animal-curiosity-prying-eyes-pack-animals-illustrations-6455243.png" alt="Left Decor" class="bottom-img cat-left">
+
+    <img src="https://cdni.iconscout.com/illustration/premium/thumb/cat-looking-at-camera-illustration-download-in-svg-png-gif-file-formats--pet-animal-curiosity-prying-eyes-pack-animals-illustrations-6455246.png" alt="Right Decor" class="bottom-img cat-right">
+<div class="about-gif">
+  <img src="giphy.gif" alt="about gif">
+</div>
+
+</body>
+</html>

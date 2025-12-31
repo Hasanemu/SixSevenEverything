@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Six Seven Everything</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-black: #1a1a1a;
+            --accent-gray: #f4f4f9;
+            --border-color: #e0e0e0;
+            --green-download: #00d26a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: var(--primary-black);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 10%;
+            background: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-black);
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover { opacity: 0.5; }
+
+        /* Main Content */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            background: #fff;
+        }
+
+        h1 { font-weight: 600; font-size: 2rem; margin-bottom: 1rem; letter-spacing: -1px; }
+        p { font-weight: 300; color: #666; margin-bottom: 2rem; }
+
+        /* Input Area */
+        .upload-area { margin-bottom: 20px; }
+        input[type="file"] { display: none; }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 12px 24px;
+            cursor: pointer;
+            border: 1px solid var(--primary-black);
+            background: transparent;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .custom-file-upload:hover { background: var(--primary-black); color: #fff; }
+
+        .btn-process {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            padding: 15px;
+            background: var(--primary-black);
+            color: white;
+            border: none;
+            font-family: 'Poppins';
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: transform 0.2s ease;
+        }
+
+        canvas {
+            margin-top: 30px;
+            max-width: 100%;
+            border-radius: 8px;
+            display: none;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Large Green Interactive Download Button */
+        #downloadLink {
+            display: none;
+            margin-top: 30px;
+            padding: 18px 50px;
+            background: var(--green-download);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0,210,106,0.2);
+        }
+
+        #downloadLink:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,210,106,0.4);
+        }
+
+        /* Bottom Decoration Images */
+        .bottom-img {
+            position: fixed;
+            bottom: -20px;
+            width: 280px;
+            z-index: 1;
+            pointer-events: none;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.05));
+        }
+        
+        .cat-right { right: 20px; }
+        .cat-left { left: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div style="font-weight: 600; font-size: 1.2rem;">SSE</div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <h1>Six Seven Everything</h1>
+            <p>Put a 6-7 on your image in less than 0.5 seconds</p>
+            
+            <div class="upload-area">
+                <label for="imageUpload" class="custom-file-upload">Choose Image</label>
+                <input type="file" id="imageUpload" accept="image/*">
+                <button class="btn-process" onclick="processImage()">SURPRISE ME</button>
+            </div>
+
+            <canvas id="canvas"></canvas>
+            
+            <a id="downloadLink" download="6-7-minimal.png">Download</a>
+        </div>
+    </main>
+
+    <img src="old" alt="Left Decor" class="bottom-img cat-left">
+
+    <img src="https://cdni.iconscout.com/illustration/premium/thumb/cat-looking-at-camera-illustration-download-in-svg-png-gif-file-formats--pet-animal-curiosity-prying-eyes-pack-animals-illustrations-6455246.png" alt="Right Decor" class="bottom-img cat-right">
+
+    <script>
+        function processImage() {
+            const fileInput = document.getElementById('imageUpload');
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            const downloadLink = document.getElementById('downloadLink');
+
+            if (!fileInput.files.length) {
+                alert('Please select an image first.');
+                return;
+            }
+
+            const img = new Image();
+            img.onload = function() {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+
+                const fontSize = Math.floor(canvas.width * 0.25);
+                ctx.font = `bold ${fontSize}px 'Poppins'`;
+                ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+                ctx.shadowBlur = 15;
+                ctx.fillStyle = 'white';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                ctx.save();
+                ctx.translate(canvas.width/2, canvas.height/2);
+                ctx.rotate(-0.05 + Math.random() * 0.1);
+                ctx.fillText('6-7', 0, 0);
+                ctx.restore();
+
+                canvas.style.display = 'block';
+                downloadLink.href = canvas.toDataURL('image/png');
+                downloadLink.style.display = 'inline-block';
+                
+                canvas.scrollIntoView({ behavior: 'smooth' });
+            };
+            img.src = URL.createObjectURL(fileInput.files[0]);
+        }
+    </script>
+</body>
+</html>
